@@ -1,0 +1,39 @@
+<h3> Add New Product </h3>
+
+<form #productAddForm="ngForm" (ngSubmit)="add(productAddForm)">
+    <div class="form-group">
+
+     <input type="text" placeholder="Product Name" #name="ngModel" [(ngModel)]="model.name" class="form-control" name="name" id="name" required>
+     <p *ngIf="name.invalid&&name.dirty" class="text-danger">Product Name is required</p>
+     <!-- dirty : writing smtinh and deleting
+         touched: go next without touch
+         pristine: first phase
+     -->
+     <input type="text" placeholder="Description" #description="ngModel" [(ngModel)]="model.description" class="form-control" name="description" id="description" required>
+     <p *ngIf="description.invalid&&description.dirty" class="text-danger">Description is required</p>
+
+     <input type="text" placeholder="İmage" #imageUrl="ngModel" [(ngModel)]="model.imageUrl" class="form-control" name="imageUrl" id="imageUrl" required>
+     <p *ngIf="imageUrl.invalid&&imageUrl.dirty" class="text-danger">imageUrl is required</p>
+
+     <input type="text" placeholder="Price" #price="ngModel" [(ngModel)]="model.price" class="form-control" name="price" id="price" required>
+     <p *ngIf="price.invalid&&price.dirty" class="text-danger">Price is required</p>
+
+     <div class="form-group">
+
+        <select class="form-control" #categoryId="ngModel" [(ngModel)]="model.categoryId" required id="categoryId" name="categoryId" >
+            <option *ngFor="let category of categories" [value]="category.id" >{{category.name}} </option>
+
+            <p *ngIf="categoryId.invalid&&categoryId.touched" class="text-danger">Category is required</p>
+        </select>
+     
+     
+
+
+     </div>
+ 
+    
+    </div>
+
+    <button type="submit" class="btn btn-primary" [disabled]="productAddForm.invalid">ADD PRODUCT</button>
+
+</form>
